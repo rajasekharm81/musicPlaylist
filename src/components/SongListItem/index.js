@@ -4,20 +4,30 @@ import {AiOutlineDelete} from 'react-icons/ai'
 import './index.css'
 
 class SongListItem extends Component {
+  sendId = () => {
+    const {getId, id} = this.props
+    getId(id)
+  }
+
   render() {
     const {item} = this.props
     return (
       <li className="songListItem">
         <div className="tumbnail">
-          <img className="SongTumbnail" src={item.imageUrl} alt={item.name} />
+          <img className="SongTumbnail" src={item.imageUrl} alt="track" />
           <div className="detailsContainer">
-            <h3 className="nameHead">{item.name}</h3>
-            <h3 className="generHead">{item.genre}</h3>
+            <p className="nameHead">{item.name}</p>
+            <p className="generHead">{item.genre}</p>
           </div>
         </div>
         <div className="deleteContainer">
-          <h1>{item.duration}</h1>
-          <button className="button" type="button">
+          <p>{item.duration}</p>
+          <button
+            data-testid="delete"
+            onClick={this.sendId}
+            className="button"
+            type="button"
+          >
             <AiOutlineDelete />
           </button>
         </div>

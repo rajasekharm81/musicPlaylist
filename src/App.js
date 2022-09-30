@@ -101,13 +101,24 @@ class App extends Component {
     this.setState({playlist: filteredList})
   }
 
+  deleteFn = id => {
+    const {playlist} = this.state
+    const NewList = playlist.filter(each => each.id !== id)
+    this.setState({playlist: NewList})
+  }
+
   renderContentView = () => {
     const {playlist} = this.state
     return (
       <div className="contentContainer">
         <ul className="content">
           {playlist.map(each => (
-            <SongListItem key={each.id} id={each.id} item={each} />
+            <SongListItem
+              key={each.id}
+              getId={this.deleteFn}
+              id={each.id}
+              item={each}
+            />
           ))}
         </ul>
       </div>
@@ -116,7 +127,7 @@ class App extends Component {
 
   renderNoItemsView = () => (
     <div className="noItemsContainer">
-      <h1>No songs Found</h1>
+      <p>No songs Found</p>
     </div>
   )
 
@@ -130,10 +141,10 @@ class App extends Component {
       <div className="mainContainer">
         <div className="topPoster">
           <h1>Ed Sheeran</h1>
-          <h1>singer</h1>
+          <p>Singer</p>
         </div>
         <div className="header">
-          <h1>Song Playlist</h1>
+          <h1>Songs Playlist</h1>
           <div className="inputElContainer">
             <input
               className="searchInputEl"
