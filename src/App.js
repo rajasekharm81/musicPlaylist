@@ -1,3 +1,5 @@
+import {Component} from 'react'
+
 import {AiOutlineSearch} from 'react-icons/ai'
 
 import SongListItem from './components/SongListItem'
@@ -89,29 +91,66 @@ const initialTracksList = [
 
 // Replace your code here
 
-const App = () => (
-  <div className="mainContainer">
-    <div className="topPoster">
-      <h1>Ed Sheeran</h1>
-      <h1>singer</h1>
-    </div>
-    <div className="contentContainer">
-      <div className="header">
-        <h1>Song Playlist</h1>
-        <div className="inputElContainer">
-          <input type="search" />
-          <i>
-            <AiOutlineSearch />
-          </i>
-        </div>
+class App extends Component {
+  state = {playlist: initialTracksList}
+
+  searchInput = event => {
+    const filteredList = initialTracksList.filter(each =>
+      each.name.toLowerCase().includes(event.target.value.toLowerCase()),
+    )
+    this.setState({playlist: filteredList})
+  }
+
+  renderContentView = () => {
+    const {playlist} = this.state
+    return (
+      <div className="contentContainer">
+        <ul className="content">
+          {playlist.map(each => (
+            <SongListItem key={each.id} id={each.id} item={each} />
+          ))}
+        </ul>
       </div>
-      <ul className="content">
-        {initialTracksList.map(each => (
-          <SongListItem key={each.id} id={each.id} item={each} />
-        ))}
-      </ul>
+    )
+  }
+
+  renderNoItemsView = () => (
+    <div className="noItemsContainer">
+      <h1>No songs Found</h1>
     </div>
-  </div>
-)
+  )
+
+  render() {
+    const {playlist} = this.state
+    const conditionalContent =
+      playlist.length === 0
+        ? this.renderNoItemsView()
+        : this.renderContentView()
+    return (
+      <div className="mainContainer">
+        <div className="topPoster">
+          <h1>Ed Sheeran</h1>
+          <h1>singer</h1>
+        </div>
+        <div className="header">
+          <h1>Song Playlist</h1>
+          <div className="inputElContainer">
+            <input
+              className="searchInputEl"
+              onChange={this.searchInput}
+              type="search"
+              placeholder="Search"
+            />
+            <i>
+              <AiOutlineSearch style={{fontSize: '28px'}} />
+            </i>
+          </div>
+        </div>
+
+        {conditionalContent}
+      </div>
+    )
+  }
+}
 
 export default App

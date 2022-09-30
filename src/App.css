@@ -38,6 +38,8 @@ body {
   flex-direction: column;
   overflow: auto;
   height: 55vh;
+  width: 100vw;
+  background-color: #152850;
 }
 
 .header {
@@ -48,6 +50,7 @@ body {
   padding-left: 5vw;
   padding-right: 5vw;
   color: white;
+  background-color: #152850;
 }
 
 .inputElContainer {
@@ -56,6 +59,18 @@ body {
   align-items: center;
 }
 
-.contentContainer {
+.noItemsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55vh;
+  color: white;
+  width: 100vw;
   background-color: #152850;
+}
+
+.searchInputEl {
+  padding: 10px;
+  margin: 2px;
+  border-radius: 10px;
 }
