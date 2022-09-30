@@ -1,0 +1,55 @@
+.songListItem {
+  display: flex;
+  justify-content: space-between;
+  width: 90vw;
+  height: 15vh;
+
+  margin: 5px;
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.SongTumbnail {
+  width: 15vh;
+  margin: 2px;
+  border-radius: 5px;
+  height: 100%;
+}
+
+.tumbnail {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 2%;
+}
+
+.deleteContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 10%;
+  margin-right: 2%;
+  color: white;
+}
+
+.detailsContainer {
+  margin-left: 2%;
+  width: 40vw;
+}
+
+.generHead {
+  color: #3b82f6;
+  height: 50%;
+}
+
+.nameHead {
+  color: #ffffff;
+  height: 50%;
+}
+
+.button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 28px;
+}
